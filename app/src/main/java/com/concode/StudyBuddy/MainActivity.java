@@ -1,25 +1,21 @@
 package com.concode.StudyBuddy;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.concode.StudyBuddy.databinding.ActivityMainBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
+    Button SignUpBTN, goToLoginBtn;
     ActivityMainBinding binding;
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
@@ -32,42 +28,30 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(this);
-
-        binding.SignUpBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = binding.name.getText().toString();
-                String number = binding.phoneNo.getText().toString();
-                String email = binding.email.getText().toString().trim();
-                String password = binding.password.getText().toString();
-                progressDialog.show();
-
-                firebaseAuth.createUserWithEmailAndPassword(email,password)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                                progressDialog.cancel();
-                                firebaseFirestore.collection("User")
-                                        .document(FirebaseAuth.getInstance().getUid())
-                                        .set(new UserModel(name,number,email));
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                                progressDialog.cancel();
-                            }
-                        });
-            }
+        SignUpBTN = findViewById(R.id.signupBtn);
+        binding.SignUpBTN.setOnClickListener(view -> {
+            String name = binding.name.getText().toString();
+            String number = binding.phoneNo.getText().toString();
+            String email = binding.email.getText().toString().trim();
+            String password = binding.password.getText().toString();
+            progressDialog.show();
+            firebaseAuth.createUserWithEmailAndPassword(email,password)
+                    .addOnSuccessListener(authResult -> {
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        progressDialog.cancel();
+                        firebaseFirestore.collection("User")
+                                .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
+                                .set(new UserModel(name,number,email));
+                    }).addOnFailureListener(e -> {
+                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog.cancel();
+                    });
         });
 
-        binding.goToLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
-            }
-        });
+        goToLoginBtn = findViewById(R.id.goToLogin);
+        binding.goToLogin.setOnClickListener(view ->
+                startActivity(new Intent(
+                        MainActivity.this,LoginActivity.class)));
 
 
     }
