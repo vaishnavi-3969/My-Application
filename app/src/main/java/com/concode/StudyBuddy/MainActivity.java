@@ -26,9 +26,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_main);
+        setContentView(binding.getRoot());
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(this);
@@ -51,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                         progressDialog.cancel();
                     });
         });
+
 
         binding.goToLogin.setOnClickListener(new View.OnClickListener() {
             @Override

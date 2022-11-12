@@ -29,18 +29,19 @@ public class LoginActivity extends AppCompatActivity {
         binding.LoginBTN.setOnClickListener(view -> {
                 String email = binding.email.getText().toString().trim();
                 String password = binding.password.getText().toString().trim();
-                progressDialog.setTitle("Sending Mail...");
+                progressDialog.setTitle("Logged In Successfully... \nSwitching to Dashboard... \n Welcome Back :)");
                 progressDialog.show();
                 firebaseAuth.signInWithEmailAndPassword(email,password)
                         .addOnSuccessListener(authResult -> {
                             progressDialog.cancel();
                             Toast.makeText(LoginActivity.this, "Login Successful!",Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(LoginActivity.this,DashBoard.class));
                         }).addOnFailureListener(e -> {
                             progressDialog.cancel();
-                            Toast.makeText(LoginActivity.this, e.getMessage(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "Error"+ e.getMessage(),Toast.LENGTH_SHORT).show();
                         });
             });
-        Button forgotPswdBtn = (Button) findViewById(R.id.forgotPswdBtn);
+
         binding.forgotPswdBtn.setOnClickListener(view -> {
             String email = binding.email.getText().toString();
             progressDialog.setTitle("Sending Mail...");
