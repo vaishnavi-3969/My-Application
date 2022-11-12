@@ -22,5 +22,5 @@
     <string name="welcome_back">Welcome Back :)</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="user">User</string>
-    <string name="already_have_an_account_login">Already Have an account? Login?</string>
+    <string name="already_have_an_account_login">Already Have an account?</string>
 </resources>
