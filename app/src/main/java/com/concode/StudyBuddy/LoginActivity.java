@@ -3,6 +3,7 @@ package com.concode.StudyBuddy;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +25,9 @@ public class LoginActivity extends AppCompatActivity {
 
         firebaseAuth=FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-        Objects.requireNonNull(binding.LoginBTN).setOnClickListener(view -> {
+        Button LoginBTN = (Button) findViewById(R.id.LoginBTN);
+        assert binding.LoginBTN != null;
+        binding.LoginBTN.setOnClickListener(view -> {
                 String email = binding.email.getText().toString().trim();
                 String password = binding.password.getText().toString().trim();
                 progressDialog.setTitle("Sending Mail...");
@@ -38,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, e.getMessage(),Toast.LENGTH_SHORT).show();
                         });
             });
+        Button forgotPswdBtn = (Button) findViewById(R.id.forgotPswdBtn);
         binding.forgotPswdBtn.setOnClickListener(view -> {
             String email = binding.email.getText().toString();
             progressDialog.setTitle("Sending Mail...");

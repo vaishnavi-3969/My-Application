@@ -20,9 +20,12 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
     FirebaseFirestore firebaseFirestore;
+//    ===============================================
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_main);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                         progressDialog.cancel();
                         firebaseFirestore.collection("User")
                                 .document(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()))
-                                .set(new UserModel(name,number,email));
+                                .set(new UserModel(name,email,number,email));
                     }).addOnFailureListener(e -> {
                         Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                         progressDialog.cancel();
