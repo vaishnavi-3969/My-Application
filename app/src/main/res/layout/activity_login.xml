@@ -132,13 +132,14 @@
         android:id="@+id/imageView"
         android:layout_width="205dp"
         android:layout_height="180dp"
+        android:contentDescription="@string/user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.177"
-        tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="@string/user" />
+        tools:ignore="ImageContrastCheck"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/LoginBTN"

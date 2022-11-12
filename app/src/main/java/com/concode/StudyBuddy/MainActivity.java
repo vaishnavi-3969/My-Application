@@ -3,6 +3,7 @@ package com.concode.StudyBuddy;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -51,11 +52,12 @@ public class MainActivity extends AppCompatActivity {
                     });
         });
 
-        goToLoginBtn = findViewById(R.id.goToLogin);
-        binding.goToLogin.setOnClickListener(view ->
-                startActivity(new Intent(
-                        MainActivity.this,LoginActivity.class)));
-
+        binding.goToLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
 
     }
 }

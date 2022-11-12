@@ -22,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         firebaseAuth=FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
         Button LoginBTN = (Button) findViewById(R.id.LoginBTN);
