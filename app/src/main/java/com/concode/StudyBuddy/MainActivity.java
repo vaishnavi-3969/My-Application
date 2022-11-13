@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseFirestore = FirebaseFirestore.getInstance();
         progressDialog = new ProgressDialog(this);
+
         SignUpBTN = findViewById(R.id.signupBtn);
         binding.SignUpBTN.setOnClickListener(view -> {
             String name = binding.name.getText().toString();
