@@ -2,6 +2,10 @@ package com.concode.StudyBuddy;
 
 public class UserModel {
     private String name, number, email,password;
+    public UserModel(){
+
+    }
+
     public UserModel(String name, String email, String number,String password) {
         this.email = email;
         this.name = name;
@@ -41,7 +45,5 @@ public class UserModel {
         this.password = password;
     }
 
-    public UserModel(){
 
-    }
 }

@@ -168,7 +168,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.683"
-        tools:ignore="SpeakableTextPresentCheck"
+        tools:ignore="LabelFor,SpeakableTextPresentCheck"
         android:importantForAutofill="no" />
 
     <Button
@@ -179,7 +179,7 @@
         android:background="#F44336"
         android:backgroundTint="#CDDC39"
         android:fontFamily="@font/baloo_thambi"
-        android:text="Login"
+        android:text="@string/_login"
         android:textAllCaps="false"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -195,7 +195,7 @@
         android:id="@+id/Already_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/baloo_thambi"
         android:text="@string/already_have_an_account_login"
