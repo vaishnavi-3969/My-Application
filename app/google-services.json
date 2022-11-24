@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "707215042346",
+    "firebase_url": "https://concode-application-default-rtdb.firebaseio.com",
     "project_id": "concode-application",
     "storage_bucket": "concode-application.appspot.com"
   },
